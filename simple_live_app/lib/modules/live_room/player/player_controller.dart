@@ -281,31 +281,10 @@ mixin PlayerSystemMixin on PlayerMixin, PlayerStateMixin, PlayerDanmakuMixin {
         //横屏
         setLandscapeOrientation();
       }
-    } else if (Platform.isWindows) {
-      _enterFullScreenWindows();
     } else {
       windowManager.setFullScreen(true);
     }
     //danmakuController?.clear();
-  }
-
-  /// Windows 真全屏（无边框铺满整个屏幕，隐藏任务栏）
-  Future<void> _enterFullScreenWindows() async {
-    try {
-      final display = await windowManager.getPrimaryDisplay();
-      if (display != null) {
-        final size = display.size;
-        await windowManager.setFullScreen(false);
-        await windowManager.setBorders(false);
-        await windowManager.setSize(size.width, size.height);
-        await windowManager.setPosition(0, 0);
-        await windowManager.setFullScreen(true);
-      } else {
-        await windowManager.setFullScreen(true);
-      }
-    } catch (_) {
-      await windowManager.setFullScreen(true);
-    }
   }
 
   /// 退出全屏
