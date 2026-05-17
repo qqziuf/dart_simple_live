@@ -282,6 +282,7 @@ mixin PlayerSystemMixin on PlayerMixin, PlayerStateMixin, PlayerDanmakuMixin {
         setLandscapeOrientation();
       }
     } else {
+      windowManager.unmaximize();
       windowManager.setFullScreen(true);
     }
     //danmakuController?.clear();
